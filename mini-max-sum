@@ -1,9 +1,11 @@
-package com.houng.swagger.oung;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.toList;
@@ -17,8 +19,16 @@ class Result {
      */
 
     public static void miniMaxSum(List<Integer> arr) {
-        // Write your code here
-
+        List<Integer> sortedList = arr.stream().sorted().collect(Collectors.toList());
+        Long smallerSum = 0L;
+        Long largeerSum = 0L;
+        for (int i = 0;i<4;i++){
+            smallerSum = smallerSum+Long.valueOf(sortedList.get(i));
+        }
+        for (int i = 4;i>0;i--){
+            largeerSum = largeerSum+Long.valueOf(sortedList.get(i));
+        }
+       System.out.println(smallerSum +" "+largeerSum);
     }
 
 }
@@ -27,10 +37,15 @@ public class Solution {
     public static void main(String[] args) throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
-        List<Integer> arr = Stream.of(bufferedReader.readLine().replaceAll("\\s+$", "").split(" "))
-                .map(Integer::parseInt)
-                .collect(toList());
-
+//        List<Integer> arr = Stream.of(bufferedReader.readLine().replaceAll("\\s+$", "").split(" "))
+//                .map(Integer::parseInt)
+//                .collect(toList());
+        List<Long> arr = new ArrayList<>();
+        arr.add(10000000000L);
+        arr.add(10000000002L);
+        arr.add(10000000001L);
+        arr.add(10000000005L);
+        arr.add(10000000004L);
         Result.miniMaxSum(arr);
 
         bufferedReader.close();
